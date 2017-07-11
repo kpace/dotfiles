@@ -67,10 +67,20 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Ctrlp config
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.sql
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  endif
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|.git|.pyc'
+
 " Custom configurations
 set number 
 set cursorline 
 set hlsearch 
+set ic
 set smartcase 
 nmap oo <Esc>k " insert new line under without leaving normal mode
 nmap OO  <Esc>j " insert new line above  without leaving normal mode
@@ -87,6 +97,11 @@ set shiftwidth=2
 set expandtab
 set path=/home/kpace/dev/projects
 set path+=/home/kpace/Desktop
+
+" NERDTree
+autocmd VimEnter * NERDTree /home/katanasov/dev/projects/cl/cl-platform
+autocmd VimEnter * cd /home/katanasov/dev/projects/cl/cl-platform
+autocmd VimEnter * wincmd p
 autocmd BufWinEnter * NERDTreeMirror " open NERDTree in every tab
 
 " JavaScript congifugration
