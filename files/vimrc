@@ -24,7 +24,7 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'rstacruzvim-easygrep/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 "Plugin 'ascenator/L9', {'name': 'newL9'}
@@ -33,6 +33,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'dkprice/vim-easygrep'
+Plugin 'mileszs/ack.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,13 +71,12 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Ctrlp config
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.sql
+set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*/dist/*,*.so,*.swp,*.zip,*.pyc,*.sql
 
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  endif
 let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|.git|.pyc'
+"let g:ctrlp_cmd = ':NERDTreeClose\|CtrlP' " stop CtrlP open files in NerdTree
 
 " Custom configurations
 set number 
@@ -82,8 +84,20 @@ set cursorline
 set hlsearch 
 set ic
 set smartcase 
+set splitbelow
+set splitright
+" split navigations
+nnoremap <S-J> <C-W><C-J>
+nnoremap <S-K> <C-W><C-K>
+nnoremap <S-L> <C-W><C-L>
+nnoremap <S-H> <C-W><C-H>
+
+
 nmap oo <Esc>k " insert new line under without leaving normal mode
 nmap OO  <Esc>j " insert new line above  without leaving normal mode
+nmap nf  :NERDTreeFind<CR>
+nmap mf  :NERDTreeToggle<CR>
+nmap ff  :Ack<Space>
 inoremap jj <Esc>
 " set keymap=bulgarian-phonetic
 imap <C-c> <CR><Esc>O
