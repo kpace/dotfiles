@@ -31,6 +31,7 @@ Plugin 'rstacruzvim-easygrep/sparkup', {'rtp': 'vim/'}
 
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'mileszs/ack.vim'
@@ -76,7 +77,7 @@ set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*/dist/*,*.so,*.sw
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|.git|.pyc'
-"let g:ctrlp_cmd = ':NERDTreeClose\|CtrlP' " stop CtrlP open files in NerdTree
+let g:ctrlp_cmd = ':NERDTreeClose\|CtrlP' " stop CtrlP open files in NerdTree
 
 " Custom configurations
 set number 
@@ -86,6 +87,9 @@ set ic
 set smartcase 
 set splitbelow
 set splitright
+set encoding=utf-8
+let mapleader=" " " map <Leader> to <Space>
+
 " split navigations
 nnoremap <S-J> <C-W><C-J>
 nnoremap <S-K> <C-W><C-K>
@@ -112,11 +116,18 @@ set expandtab
 set path=/home/kpace/dev/projects
 set path+=/home/kpace/Desktop
 
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 " NERDTree
 autocmd VimEnter * NERDTree /home/katanasov/dev/projects/cl/cl-platform
 autocmd VimEnter * cd /home/katanasov/dev/projects/cl/cl-platform
 autocmd VimEnter * wincmd p
 autocmd BufWinEnter * NERDTreeMirror " open NERDTree in every tab
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+
 
 " JavaScript congifugration
 set t_Co=256
