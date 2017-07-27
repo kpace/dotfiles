@@ -36,6 +36,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'mileszs/ack.vim'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,6 +52,14 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" Python Plugins
+Plugin 'nvie/vim-flake8'
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'hdima/python-syntax' "better Python syntax
+
+let python_highlight_all=1
 
 " JS Plugins
 Plugin 'jelera/vim-javascript-syntax'
@@ -132,8 +141,17 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 " JavaScript congifugration
 set t_Co=256
 syntax on
-set background=dark
-colorscheme distinguished
+
+if has('gui_running')
+    set background=dark
+    colorscheme solarized
+else
+    colorscheme zenburn
+endif
+
+call togglebg#map("<F5>") " switch solarized background with F5
+
+"colorscheme distinguished
 " These are the tweaks I apply to YCM's config, you don't need them but they
 " might help.
 " " YCM gives you popups and splits by default that some people might not
