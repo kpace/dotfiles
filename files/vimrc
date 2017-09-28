@@ -22,6 +22,7 @@ Plugin 'L9'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin' " show modified files in NERDTree
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-commentary'
@@ -69,6 +70,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_javascript_checkers=['eslint']
+
+" gitgutter config
+let g:gitgutter_highlight_lines = 1
 
 " Ctrlp config
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*/dist/*,*.so,*.swp,*.zip,*.pyc,*.sql
