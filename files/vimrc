@@ -74,7 +74,7 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers=['eslint']
 
 " gitgutter config
-let g:gitgutter_highlight_lines = 1
+let g:gitgutter_highlight_lines = 0
 
 " Ctrlp config
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*/dist/*,*.so,*.swp,*.zip,*.pyc,*.sql
@@ -82,7 +82,6 @@ set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*/dist/*,*.so,*.sw
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|.git|.pyc'
-let g:ctrlp_cmd = ':NERDTreeClose\|CtrlP' " stop CtrlP open files in NerdTree
 
 " Custom configurations
 set number 
