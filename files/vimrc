@@ -133,7 +133,6 @@ if !empty($CLROOT)
 endif
 
 autocmd VimEnter * wincmd p
-autocmd BufWinEnter * NERDTreeMirror " open NERDTree in every tab
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 
