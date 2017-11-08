@@ -108,6 +108,10 @@ nmap nf  :NERDTreeFind<CR>
 nmap mf  :NERDTreeToggle<CR>
 nmap ff  :Ack<Space>
 inoremap jj <Esc>
+map <leader>w  :w <CR>
+map <leader>c  :tabc <CR>
+map <leader>e  :tabe <CR>
+
 " set keymap=bulgarian-phonetic
 imap <C-c> <CR><Esc>O
 "set tabs
@@ -125,12 +129,6 @@ set path+=/home/kpace/Desktop
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-" NERDTree
-"
-if !empty($CLROOT)
-  autocmd VimEnter * NERDTree $HOME/$CLROOT
-  autocmd VimEnter * cd $HOME/$CLROOT
-endif
 
 autocmd VimEnter * wincmd p
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
