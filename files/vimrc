@@ -112,6 +112,8 @@ map <leader>w  :w <CR>
 map <leader>c  :tabc <CR>
 map <leader>e  :tabe <CR>
 map <leader>p  :CtrlPClearAllCaches <CR>
+map <leader>dt  :diffthis <CR>
+map <leader>do  :diffoff <CR>
 
 " set keymap=bulgarian-phonetic
 imap <C-c> <CR><Esc>O
