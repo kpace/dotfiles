@@ -108,11 +108,18 @@ nmap nf  :NERDTreeFind<CR>
 nmap mf  :NERDTreeToggle<CR>
 nmap ff  :Ack<Space>
 inoremap jj <Esc>
+map <leader>sv  :source ~/.vimrc <CR>
 map <leader>w  :w <CR>
 map <leader>c  :tabc <CR>
 map <leader>e  :tabe <CR>
 map <leader>dt  :diffthis <CR>
 map <leader>do  :diffoff <CR>
+
+" recorded macros
+let debb = 'Odebugger;'
+map <leader>id @=debb<CR>
+let clog = 'Oconsole.log();€kl€kl'
+map <leader>il @=clog<CR>
 
 " set keymap=bulgarian-phonetic
 imap <C-c> <CR><Esc>O
