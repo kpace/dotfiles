@@ -108,6 +108,7 @@ nmap nf  :NERDTreeFind<CR>
 nmap mf  :NERDTreeToggle<CR>
 nmap ff  :Ack<Space>
 inoremap jj <Esc>
+map <leader>ev  :tabe ~/.vimrc <CR>
 map <leader>sv  :source ~/.vimrc <CR>
 map <leader>w  :w <CR>
 map <leader>c  :tabc <CR>
