@@ -110,6 +110,7 @@ nmap ff  :Ack<Space>
 inoremap jj <Esc>
 map <leader>ev  :tabe ~/.vimrc <CR>
 map <leader>sv  :source ~/.vimrc <CR>
+map <leader>q  :q <CR>
 map <leader>w  :w <CR>
 map <leader>c  :tabc <CR>
 map <leader>e  :tabe <CR>
