@@ -29,7 +29,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'             " repeat plugin mappings
 Plugin 'mileszs/ack.vim'
-Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
