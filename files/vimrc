@@ -22,10 +22,12 @@ Plugin 'L9'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin' " show modified files in NERDTree
+Plugin 'Xuyuanp/nerdtree-git-plugin'  " show modified files in NERDTree
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'             " repeat plugin mappings
 Plugin 'mileszs/ack.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
