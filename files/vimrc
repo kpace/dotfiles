@@ -1,7 +1,7 @@
 " Vundle configuration
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype on                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -28,6 +28,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'             " repeat plugin mappings
+Plugin 'tweekmonster/django-plus.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
@@ -49,9 +50,6 @@ filetype plugin indent on    " required
 " Python Plugins
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
-Plugin 'hdima/python-syntax' "better Python syntax
-
-let python_highlight_all=1
 
 " JS Plugins
 Plugin 'jelera/vim-javascript-syntax'
@@ -71,8 +69,12 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_css_checkers = ['csslint']
+
+let g:ycm_show_diagnostics_ui = 0
 
 " gitgutter config
 let g:gitgutter_highlight_lines = 0
@@ -129,14 +131,17 @@ map <leader>il @=clog<CR>
 imap <C-c> <CR><Esc>O
 "set tabs
 filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=2
-" when indenting with '>', use 4 spaces width
-set shiftwidth=2
-" On pressing tab, insert 4 spaces
-set expandtab
-set path=/home/kpace/dev/projects
-set path+=/home/kpace/Desktop
+
+autocmd BufEnter *.css set ai sw=2 ts=2 sta et fo=croql filetype=css
+autocmd BufEnter *.scss set ai sw=2 ts=2 sta et fo=croql filetype=sass
+autocmd BufEnter *.js set ai sw=2 ts=2 sta et fo=croql filetype=javascript
+autocmd BufEnter *.jsx set ai sw=2 ts=2 sta et fo=croql filetype=javascript
+autocmd BufEnter *.html set ai sw=2 ts=2 sta et fo=croql filetype=javascript
+autocmd FileType python set sw=4 ts=4 sts=4
+
+set list
+set listchars=tab:>-,trail:~,extends:>,precedes:<
+
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
