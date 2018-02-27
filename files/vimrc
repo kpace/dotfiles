@@ -32,6 +32,10 @@ Plugin 'tweekmonster/django-plus.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
+" C#
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'tpope/vim-dispatch'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -50,6 +54,7 @@ filetype plugin indent on    " required
 " Python Plugins
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
+Plugin 'python-mode/python-mode'
 
 " JS Plugins
 Plugin 'jelera/vim-javascript-syntax'
@@ -65,6 +70,8 @@ Plugin 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+let g:pymode_virtualenv_path = $HOME . '.virtualenvs/filetuning/bin/python'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -88,20 +95,20 @@ let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|.git|.pyc'
 
 " Custom configurations
 set number relativenumber
-set cursorline 
-set hlsearch 
+set cursorline
+set hlsearch
 set ic
-set smartcase 
+set smartcase
 set splitbelow
 set splitright
 set encoding=utf-8
 let mapleader=" " " map <Leader> to <Space>
 
 " split navigations
-nnoremap <S-J> <C-W><C-J>
-nnoremap <S-K> <C-W><C-K>
-nnoremap <S-L> <C-W><C-L>
-nnoremap <S-H> <C-W><C-H>
+nnoremap <S-j> <C-W><C-J>
+nnoremap <S-k> <C-W><C-K>
+nnoremap <S-l> <C-W><C-L>
+nnoremap <S-h> <C-W><C-H>
 
 nnoremap % v%
 
@@ -137,7 +144,6 @@ autocmd BufEnter *.scss set ai sw=2 ts=2 sta et fo=croql filetype=sass
 autocmd BufEnter *.js set ai sw=2 ts=2 sta et fo=croql filetype=javascript
 autocmd BufEnter *.jsx set ai sw=2 ts=2 sta et fo=croql filetype=javascript
 autocmd BufEnter *.html set ai sw=2 ts=2 sta et fo=croql filetype=javascript
-autocmd FileType python set sw=4 ts=4 sts=4
 
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
