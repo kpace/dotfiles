@@ -153,7 +153,12 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 set t_Co=256
 syntax on
 
-" colorscheme zenburn
+if has('gui_running')
+  set guifont=Source\ Code\ Pro\ for\ Powerline:h11
+endif
+
+
+colorscheme desert
 " These are the tweaks I apply to YCM's config, you don't need them but they
 " might help.
 " " YCM gives you popups and splits by default that some people might not
