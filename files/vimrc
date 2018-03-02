@@ -52,8 +52,10 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:pymode_virtualenv_path = $HOME . '/.virtualenvs/filetuning'
+let g:pymode_python = 'python3'
+let g:pymode_folding = 1
 let g:pymode_rope_complete_on_dot = 1
+let g:pymode_virtualenv_path = $HOME . '/.virtualenvs/filetuning'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -90,12 +92,13 @@ set encoding=utf-8
 let mapleader=" " " map <Leader> to <Space>
 
 " split navigations
-nnoremap <S-j> <C-W><C-J>
-nnoremap <S-k> <C-W><C-K>
-nnoremap <S-l> <C-W><C-L>
-nnoremap <S-h> <C-W><C-H>
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
 
 nnoremap % v%
+vnoremap <leader>s :sort<CR>
 
 nmap oo <Esc>k " insert new line under without leaving normal mode
 nmap OO  <Esc>j " insert new line above  without leaving normal mode
@@ -112,6 +115,14 @@ map <leader>e  :tabe <CR>
 map <leader>p  :CtrlPClearAllCaches <CR>
 map <leader>dt  :diffthis <CR>
 map <leader>do  :diffoff <CR>
+
+" easier moving between tabs
+map <leader>n  <esc>:tabprevious<CR>
+map <leader>m  <esc>:tabnext<CR>
+
+" folding shortcuts
+map <leader>f  <esc>zM
+map <leader>o  <esc>zA
 
 " recorded macros
 let debb = 'Odebugger;'
@@ -131,16 +142,12 @@ autocmd BufEnter *.html set ai sw=2 ts=2 sta et fo=croql filetype=javascript
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 
-
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-
 autocmd VimEnter * wincmd p
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-
 
 " JavaScript congifugration
 set t_Co=256
