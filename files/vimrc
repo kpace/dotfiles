@@ -1,3 +1,13 @@
+if has('python3')
+endif
+let g:pymode = 1
+let g:pymode_python = 'python3'
+let g:pymode_lint = 0
+" let g:pymode_folding = 1
+let g:pymode_rope = 1
+let g:pymode_rope_completion = 0
+let g:pymode_rope_goto_definition_cmd = 'tabe'
+let g:pymode_rope_goto_definition_bind = '<leader>g'
 " Vundle configuration
 
 set nocompatible              " be iMproved, required
@@ -9,10 +19,8 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
-
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'  " show modified files in NERDTree
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
@@ -20,28 +28,29 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'             " repeat plugin mappings
 Plugin 'mileszs/ack.vim'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'RRethy/vim-illuminate'
+Plugin 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 
 " C#
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'tpope/vim-dispatch'
+" Plugin 'OmniSharp/omnisharp-vim'
+" Plugin 'tpope/vim-dispatch'
 
 " Python Plugins
-Plugin 'nvie/vim-flake8'
-Plugin 'jnurmine/Zenburn'
-Plugin 'python-mode/python-mode'
+Plugin 'python-mode/python-mode', { 'for': 'python', 'branch': 'master' }
 Plugin 'tweekmonster/django-plus.vim'
 Plugin 'plytophogy/vim-virtualenv'
+Plugin 'python-rope/ropevim'
+Plugin 'tmhedberg/SimpylFold' " python folding
 
-" JS Plugins
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'marijnh/tern_for_vim'
+" Themes
+Plugin 'jnurmine/Zenburn'
+Plugin 'rakr/vim-one'
+Plugin 'junegunn/seoul256.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,18 +60,23 @@ filetype plugin indent on    " required
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" let g:syntastic_mode_map = { 'passive_filetypes': ['python'] } " turn off syntastic for python
 
-let g:pymode_python = 'python3'
-let g:pymode_folding = 1
-let g:pymode_rope_complete_on_dot = 1
+" let g:pymode_rope_complete_on_dot = 1
+" let g:pymode_rope_completion_bind = '<C-Space>'
+let g:pymode_options_max_line_length = 120
+let g:pymode_quickfix_minheight = 2
+let g:pymode_quickfix_maxheight = 6
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_python_checker = 0
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args='--max-line-length=120'
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_css_checkers = ['csslint']
+let g:syntastic_loc_list_height=4
+" let g:syntastic_css_checkers = ['csslint']
 
 let g:ycm_show_diagnostics_ui = 0
 
@@ -77,7 +91,7 @@ set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*/dist/*,*.so,*.sw
 
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|.git|.pyc'
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|.git|.pyc|docker_logs'
 
 " Put swap, backup and undo files in the following dirs
 set backupdir=~/.vim/backup//
@@ -93,9 +107,13 @@ set smartcase
 set splitbelow
 set splitright
 set encoding=utf-8
+" setlocal spell spelllang=en_us " turn on spellchecking
 let mapleader=" " " map <Leader> to <Space>
 
-" split navigations
+" open projects directory on startup
+au VimEnter * NERDTreeToggle /Users/krasimiratanasov/dev/projects
+
+" split navigation
 nnoremap <C-j> <C-W><C-J>
 nnoremap <C-k> <C-W><C-K>
 nnoremap <C-l> <C-W><C-L>
@@ -108,61 +126,76 @@ nmap oo <Esc>k " insert new line under without leaving normal mode
 nmap OO  <Esc>j " insert new line above  without leaving normal mode
 nmap nf  :NERDTreeFind<CR>
 nmap mf  :NERDTreeToggle<CR>
-nmap ff  :Ack<Space>
+nmap ff  :Ack<Space>-i<Space>
 inoremap jj <Esc>
 map <leader>ev  :tabe ~/.vimrc <CR>
+map <leader>co  :tabe ~/.commands <CR>
 map <leader>sv  :source ~/.vimrc <CR>
 map <leader>q  :q <CR>
 map <leader>w  :w <CR>
 map <leader>c  :tabc <CR>
 map <leader>e  :tabe <CR>
 map <leader>p  :CtrlPClearAllCaches <CR>
+map <leader>jf  :%!python -m json.tool <CR>
 map <leader>dt  :diffthis <CR>
 map <leader>do  :diffoff <CR>
+map <leader>ve :PymodeVirtualenv '/Users/krasimiratanasov/.virtualenvs/iris/'
+map <leader>nt :NERDTree /Users/krasimiratanasov/dev/projects/irisai_repo <CR>
 
 " easier moving between tabs
 map <leader>n  <esc>:tabprevious<CR>
 map <leader>m  <esc>:tabnext<CR>
 
+set shiftwidth=2
+set expandtab
+
 " folding shortcuts
-map <leader>f  <esc>zM
-map <leader>o  <esc>zA
+map <leader>o  <esc>za
+map <leader>O  <esc>zA
+set foldmethod=indent
+set foldnestmax=2
+let g:SimpylFold_docstring_preview=1 " preview docstrings in folded text
 
 " recorded macros
 let debb = 'Odebugger;'
 map <leader>id @=debb<CR>
 let clog = 'Oconsole.log();€kl€kl'
 map <leader>il @=clog<CR>
+" let pdb = 'Oimport pdb; pdb.set_trace()'
+let pdb = 'Oimport remote_pdb; remote_pdb.set_trace(host="0.0.0.0", port=4444)'
+let pdb = 'Ofrom remote_pdb import RemotePdb; RemotePdb("0.0.0.0", 4444).set_trace()'
+map <leader>ip @=pdb<CR>
 
 " set keymap=bulgarian-phonetic
-imap <C-c> <CR><Esc>O
+" imap <C-c> <CR><Esc>O
 
 autocmd BufEnter *.css set ai sw=2 ts=2 sta et fo=croql filetype=css
 autocmd BufEnter *.scss set ai sw=2 ts=2 sta et fo=croql filetype=sass
 autocmd BufEnter *.js set ai sw=2 ts=2 sta et fo=croql filetype=javascript
 autocmd BufEnter *.jsx set ai sw=2 ts=2 sta et fo=croql filetype=javascript
-autocmd BufEnter *.html set ai sw=2 ts=2 sta et fo=croql filetype=javascript
+autocmd FileType html set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType htmldjango set tabstop=2|set shiftwidth=2|set expandtab
 
 set list
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 
 " YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let g:ycm_autoclose_preview_window_after_completion=1
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 autocmd VimEnter * wincmd p
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-" JavaScript congifugration
+" JavaScript configuration
 set t_Co=256
 syntax on
+colorscheme PaperColor
 
 if has('gui_running')
   set guifont=Source\ Code\ Pro\ for\ Powerline:h11
 endif
 
-
-colorscheme desert
+runtime macros/matchit.vim
 " These are the tweaks I apply to YCM's config, you don't need them but they
 " might help.
 " " YCM gives you popups and splits by default that some people might not
@@ -170,3 +203,8 @@ colorscheme desert
 " let g:ycm_add_preview_to_completeopt=0
 " let g:ycm_confirm_extra_conf=0
 " set completeopt-=preview
+" set completeopt=longest,menuone
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Jedi 
+" let g:jedi#use_splits_not_buffers = "right"
